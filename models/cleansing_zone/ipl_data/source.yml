@@ -1,0 +1,8 @@
+version: 2
+
+sources:
+  - name: raw 
+    database: IPL_MATCH
+    schema: IPL_MATCH_DATA
+    tables:
+      - name: ALL_IPL_MATCH_DATA
