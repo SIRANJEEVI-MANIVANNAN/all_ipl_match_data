@@ -1,0 +1,88 @@
+version: 2
+
+models:
+  - name: ipl_data_dimmatch
+    description: "Dimension table containing metadata for each IPL match"
+    columns:
+      - name: MATCH_ID
+        description: "Unique identifier for the match"
+      - name: MATCH_DATE
+        description: "Date on which the match was played"
+      - name: CITY
+        description: "City where the match took place"
+      - name: VENUE
+        description: "Stadium or venue of the match"
+      - name: EVENT_STAGE
+        description: "Stage of the event (e.g., league, qualifier, final)"
+      - name: SEASON
+        description: "IPL season year"
+
+  - name: ipl_data_dimplayers
+    description: "Dimension table containing player master data"
+    columns:
+      - name: PLAYER_ID
+        description: "Unique identifier for a player"
+      - name: PLAYER_NAME
+        description: "Full name of the player"
+
+  - name: ipl_data_dimumpires
+    description: "Dimension table containing umpire master data"
+    columns:
+      - name: UMPIRE_ID
+        description: "Unique identifier for an umpire"
+      - name: UMPIRE_NAME
+        description: "Full name of the umpire"
+
+  - name: ipl_data_fact_matches
+    description: "Fact table containing match-level details and outcomes"
+    columns:
+      - name: MATCH_ID
+        description: "Foreign key referencing dimmatch"
+      - name: MATCH_DATE
+        description: "Date of the match"
+      - name: CITY
+        description: "City where the match occurred"
+      - name: EVENT_NAME
+        description: "Name of the tournament event"
+      - name: MATCH_NUMBER
+        description: "Sequential number of the match in the season"
+      - name: MATCH_TYPE
+        description: "Type of the match (T20, etc.)"
+      - name: MATCH_TYPE_NUMBER
+        description: "Numeric classification of the match type"
+      - name: GENDER
+        description: "Indicates men’s or women’s match"
+      - name: VENUE
+        description: "Location of the match"
+      - name: TOSS_WINNER
+        description: "Team that won the toss"
+      - name: TOSS_DECISION
+        description: "Decision made after winning toss"
+      - name: WINNER
+        description: "Team that won the match"
+      - name: MATCH_RESULT
+        description: "Result type (win, tie, etc.)"
+      - name: BY_INNINGS
+        description: "Victory margin by innings (if any)"
+      - name: BY_WICKETS
+        description: "Victory margin by wickets"
+      - name: BY_RUNS
+        description: "Victory margin by runs"
+      - name: PLAYER_OF_MATCH_ID
+        description: "Foreign key referencing dimplayers"
+      - name: SEASON
+        description: "Season in which the match was played"
+      - name: TEAM_1
+        description: "Name of the first team"
+      - name: TEAM_2
+        description: "Name of the second team"
+
+  - name: ipl_data_fact_top_performers
+    description: "Fact table showing top run scorers per season"
+    columns:
+      - name: SEASON
+        description: "IPL season year"
+      - name: BATTER
+        description: "Name of the batter (can be normalized to PLAYER_ID)"
+      - name: TOTAL_RUNS
+        description: "Total runs scored by the batter in that season"
